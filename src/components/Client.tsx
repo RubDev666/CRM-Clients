@@ -2,9 +2,13 @@
 
 import { ClientDB } from "@/types/types";
 import { useRouter } from "next/navigation";
+import { deleteClient, getClient } from "@/lib/actions/client.actions";
+import { useCRMstore } from "@/store/crm-store";
 
 export default function Client({ client }: { client: ClientDB }) {
     const { nombre, email, telefono, _id, notas } = client;
+
+    const {getClientModal} = useCRMstore();
 
     const router = useRouter();
 
@@ -27,7 +31,13 @@ export default function Client({ client }: { client: ClientDB }) {
                 <button
                     type="button"
                     className="bg-blue-700 p-2 text-white hover:bg-blue-500 font-bold text-xs flex  xl:hidden rounded-lg"
-                    //onClick={() => informacionCliente(_id)}
+                    onClick={async () => {
+                        const res = await getClient(_id);
+
+                        if(!res) return;
+
+                        getClientModal(res.client);
+                    }}
                 >
                     Ver informacion completa
                 </button>
@@ -35,7 +45,7 @@ export default function Client({ client }: { client: ClientDB }) {
                 <button
                     type="button"
                     className="bg-blue-700 hover:bg-blue-500 font-bold text-xs hidden xl:block py-2 rounded-lg text-white w-full mb-3"
-                    //onClick={() => router.push(`editar/${cliente._id}`)}
+                    onClick={() => router.push(`edit-client/${_id}`)}
                 >
                     Editar
                 </button>
@@ -43,7 +53,7 @@ export default function Client({ client }: { client: ClientDB }) {
                 <button
                     type="submit"
                     className="bg-red-700 text-white hover:bg-red-500 font-bold text-xs p-2 rounded-lg w-full hidden xl:block"
-                    //onClick={() => eliminarCliente(_id)}
+                    onClick={() => deleteClient(_id)}
                 >
                     Eliminar
                 </button>

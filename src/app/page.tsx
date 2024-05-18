@@ -7,7 +7,7 @@ export default async function Home() {
 
     if (!result) return <h1>Ha ocurrido un error inesperado</h1>;
 
-    return (
-        <IndexPage datos={result.posts} />
+    return ( 
+        <IndexPage clients={result.posts} />
     )
 }

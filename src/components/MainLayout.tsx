@@ -9,12 +9,12 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {faBars, faTimes} from "@fortawesome/free-solid-svg-icons";
 
 export default function MainLayout({ children }: {children: React.ReactNode}) {
-    const [openMenu, setOpenMenu] = useState(false);
+    const [openMenu, setOpenMenu] = useState(true);
 
     const location = usePathname();
 
-    /*useEffect(() => {
-        const navMobile = document.querySelector('.nav-mobile');
+    useEffect(() => {
+        const navMobile = document.querySelector('.nav-mobile') as HTMLElement;
 
         if (openMenu) {
             navMobile.style.top = '64px';
@@ -22,7 +22,7 @@ export default function MainLayout({ children }: {children: React.ReactNode}) {
             navMobile.style.top = '-200px';
         }
 
-    }, [openMenu])*/
+    }, [openMenu])
 
     const handleNav = () => {
         if (openMenu) {

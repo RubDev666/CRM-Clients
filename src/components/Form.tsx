@@ -1,12 +1,19 @@
 'use client';
 
 import { ClientDB, ClientForm } from "@/types/types";
-import { postClient } from "@/lib/actions/client.actions";
-import { usePathname, useRouter } from "next/navigation";
+import { createClient, updateClient } from "@/lib/actions/client.actions";
+import { useRouter } from "next/navigation";
+import { useCRMstore } from "@/store/crm-store";
+import { useEffect } from "react";
 
 export default function Form({client}: {client: ClientDB | undefined}) {
     const router = useRouter();
-    const path = usePathname();
+
+    const {resetFilter} = useCRMstore();
+
+    useEffect(() => {
+        resetFilter();
+    }, [])
 
     const submit = async (formData: FormData) => {
         const objSubmit: ClientForm = {
@@ -18,7 +25,8 @@ export default function Form({client}: {client: ClientDB | undefined}) {
 
         if(Object.values(objSubmit).includes('')) return;
 
-        await postClient(objSubmit, path);
+        if(!client) await createClient(objSubmit);
+        if(client !== undefined) await updateClient(client._id, objSubmit);
 
         router.push('/');
     }
