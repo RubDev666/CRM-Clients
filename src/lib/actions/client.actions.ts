@@ -36,7 +36,7 @@ export const postClient = async (client: ClientForm, path: string) => {
 
         await new ClientModel(client).save();
 
-        revalidatePath(path);
+        revalidatePath('/');
     } catch (error: any) {
         console.log(error);
     }
