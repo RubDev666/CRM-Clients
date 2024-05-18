@@ -2,10 +2,11 @@
 
 import { ClientDB, ClientForm } from "@/types/types";
 import { postClient } from "@/lib/actions/client.actions";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 export default function Form({client}: {client: ClientDB | undefined}) {
     const router = useRouter();
+    const path = usePathname();
 
     const submit = async (formData: FormData) => {
         const objSubmit: ClientForm = {
@@ -17,7 +18,7 @@ export default function Form({client}: {client: ClientDB | undefined}) {
 
         if(Object.values(objSubmit).includes('')) return;
 
-        await postClient(objSubmit);
+        await postClient(objSubmit, path);
 
         router.push('/');
     }

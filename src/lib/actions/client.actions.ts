@@ -1,5 +1,6 @@
 "use server";
 
+import { revalidatePath } from "next/cache";
 import { connectToDB } from "../mongoose";
 
 import ClientModel from "../models/client.model";
@@ -29,11 +30,13 @@ export async function getClients() {
     }
 }
 
-export const postClient = async (client: ClientForm) => {
+export const postClient = async (client: ClientForm, path: string) => {
     try {
-        await connectToDB();
+        connectToDB();
 
         await new ClientModel(client).save();
+
+        revalidatePath(path);
     } catch (error: any) {
         console.log(error);
     }
