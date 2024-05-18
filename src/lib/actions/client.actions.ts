@@ -3,9 +3,10 @@
 import { connectToDB } from "../mongoose";
 
 import ClientModel from "../models/client.model";
+import { ClientForm, ClientDB } from "@/types/types";
 
 //obtener cantidad de post segun el numero de la paginacion
-export async function fetchPosts() {
+export async function getClients() {
     try {
         connectToDB();
 
@@ -23,6 +24,16 @@ export async function fetchPosts() {
         }
 
         return { posts: newArr, isNext: true };
+    } catch (error: any) {
+        console.log(error);
+    }
+}
+
+export const postClient = async (client: ClientForm) => {
+    try {
+        await connectToDB();
+
+        await new ClientModel(client).save();
     } catch (error: any) {
         console.log(error);
     }
