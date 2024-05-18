@@ -18,7 +18,7 @@ export default function IndexPage({ clients: results }: GetClientsDB) {
             <h1 className="text-center font-black text-3xl xl:text-4xl text-blue-900">Clientes</h1>
             <p className="mt-3 text-center font-bold xl:text-xl">Administra tus Clientes</p>
 
-            {results.length && <ClientSearch />}
+            {results.length > 0 && <ClientSearch />}
 
             {warning && <Warning />}
 
