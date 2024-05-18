@@ -12,7 +12,7 @@ import { ClientDB } from '@/types/types';
 export default function Modal({clienteModal}: {clienteModal: ClientDB}) {
     const router = useRouter();
 
-    const {closeModal} = useCRMstore();
+    const {closeModal, resetFilter} = useCRMstore();
 
     return(
         <div className="z-50 z- fixed top-16 md:top-0 left-0 md:left-1/4 h-screen w-full md:w-3/4 px-6 xl:hidden">
@@ -57,6 +57,7 @@ export default function Modal({clienteModal}: {clienteModal: ClientDB}) {
                             await deleteClient(clienteModal._id);
 
                             closeModal();
+                            resetFilter();
                         }}
                     >
                         Eliminar

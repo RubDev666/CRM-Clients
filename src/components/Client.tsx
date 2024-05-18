@@ -8,7 +8,7 @@ import { useCRMstore } from "@/store/crm-store";
 export default function Client({ client }: { client: ClientDB }) {
     const { nombre, email, telefono, _id, notas } = client;
 
-    const {getClientModal} = useCRMstore();
+    const {getClientModal, resetFilter} = useCRMstore();
 
     const router = useRouter();
 
@@ -53,7 +53,11 @@ export default function Client({ client }: { client: ClientDB }) {
                 <button
                     type="submit"
                     className="bg-red-700 text-white hover:bg-red-500 font-bold text-xs p-2 rounded-lg w-full hidden xl:block"
-                    onClick={() => deleteClient(_id)}
+                    onClick={() => {
+                        deleteClient(_id);
+
+                        resetFilter();
+                    }}
                 >
                     Eliminar
                 </button>
