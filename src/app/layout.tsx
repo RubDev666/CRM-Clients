@@ -2,16 +2,25 @@ import React from "react";
 import type { Metadata } from "next";
 import "./globals.css";
 
+import "@fortawesome/fontawesome-svg-core/styles.css";
+import { config } from "@fortawesome/fontawesome-svg-core"; 
+
+config.autoAddCss = false; 
+
+import { MainLayout } from "@/components";
+
 export const metadata: Metadata = {
-    title: "Threads",
-    description: "A Next.js 13 Meta Threads application",
+    title: "CRM-Clients",
+    description: "Basic CRM for any business, or small company, even for personal use.",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
     return (
         <html lang='en'>
-            <body>
-                {children}
+            <body className='min-h-screen bg-gray-100'>
+                <MainLayout>
+                    {children}
+                </MainLayout>
             </body>
         </html>
     );
