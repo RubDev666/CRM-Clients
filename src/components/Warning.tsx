@@ -21,8 +21,8 @@ export default function Warning() {
                 className="text-red-700 hover:text-red-500 cursor-pointer absolute right-5"
                 onClick={closeWarning}
             />
-            <h3 className="uppercase font-bold">Aviso importante:</h3>
-            <p>Esta aplicacion web es solo para fines practicos y demostrativos, por lo que cualquier persona que ingrese al sitio podra leer, editar y borrar los datos que usted o cualquier usuario agregue. <span className="text-red-600 font-bold">Se recomienda NO añadir numeros de teléfono y correos reales por su seguridad.</span></p>
+            <h3 className="uppercase font-bold">Warning:</h3>
+            <p>This web application is for practical and demonstration purposes only, so anyone who enters the site will be able to read, edit and delete the data that you or any user adds. <span className="text-red-600 font-bold">It is recommended NOT to add real phone numbers and emails for your security.</span></p>
         </div>
     )
 }

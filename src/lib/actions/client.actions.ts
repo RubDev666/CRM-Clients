@@ -4,9 +4,8 @@ import { revalidatePath } from "next/cache";
 import { connectToDB } from "../mongoose";
 
 import ClientModel from "../models/client.model";
-import { ClientForm, ClientDB, GetClientsDB } from "@/types/types";
+import { ClientForm, ClientDB } from "@/types/types";
 
-//obtener cantidad de post segun el numero de la paginacion
 export async function getClients() {
     try {
         connectToDB();
@@ -17,14 +16,14 @@ export async function getClients() {
 
         if(res.length > 0) {
             for(let client of res) {
-                const {email, nombre, notas, telefono, _id} = client;
+                const {email, name, notes, phone, _id} = client;
 
                 //I get warnings if I don't convert the id to a string
-                newArr = [{email, nombre, notas, telefono, _id: _id.toString()}, ...newArr]
+                newArr = [{email, name, notes, phone, _id: _id.toString()}, ...newArr]
             }
         }
 
-        return { posts: newArr, isNext: true };
+        return { clients: newArr, isNext: true };
     } catch (error: any) {
         console.log(error);
     }
@@ -38,10 +37,10 @@ export async function getClient(_id: string) {
 
         const obj: ClientDB = {
             _id: client._id.toString(),
-            nombre: client.nombre,
-            notas: client.notas,
+            name: client.name,
+            notes: client.notes,
             email: client.email,
-            telefono: client.telefono
+            phone: client.phone
         }
 
         return {client: obj};

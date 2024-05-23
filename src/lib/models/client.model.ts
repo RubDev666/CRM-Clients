@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 const clientSchema = new mongoose.Schema({
-    nombre: {
+    name: {
         type: String, 
         required: true,
         trim: true
@@ -10,16 +10,16 @@ const clientSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    telefono: {
+    phone: {
         type: Number,
         required:  true
     },
-    notas: {
+    notes: {
         type: String,
         required: true
     }
 });
 
-const ClientModel = mongoose.models.clientes || mongoose.model("clientes", clientSchema);
+const ClientModel = mongoose.models.clients || mongoose.model("clients", clientSchema);
 
 export default ClientModel;

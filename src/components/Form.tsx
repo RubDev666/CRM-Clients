@@ -17,10 +17,10 @@ export default function Form({client}: {client: ClientDB | undefined}) {
 
     const submit = async (formData: FormData) => {
         const objSubmit: ClientForm = {
-            nombre: formData.get('nombre') as string,
+            name: formData.get('client-name') as string,
             email: formData.get('email') as string,
-            telefono: parseInt(formData.get('telefono') as string),
-            notas: formData.get('notas')?.toString() as string
+            phone: parseInt(formData.get('phone') as string),
+            notes: formData.get('notes')?.toString() as string
         }
 
         if(Object.values(objSubmit).includes('')) return;
@@ -32,10 +32,10 @@ export default function Form({client}: {client: ClientDB | undefined}) {
     }
 
     const validateTel = () => {
-        const tel = document.querySelector('#telefono') as HTMLInputElement;
+        const tel = document.querySelector('#phone') as HTMLInputElement;
 
         if(tel.value.length < 9) {
-            tel.setCustomValidity('Minimo 9 digitos');
+            tel.setCustomValidity('Minimum 9 digits');
 
             tel.reportValidity();
         } else {
@@ -47,34 +47,34 @@ export default function Form({client}: {client: ClientDB | undefined}) {
         <form
             //onSubmit={}
             action={submit}
-            name='formulario'
+            name='client-form'
         >
             <div className="mb-4">
                 <label
-                    className="text-gray-800 font-bold"
-                    htmlFor="nombre"
-                >Nombre:</label>
+                    className="text-third font-bold"
+                    htmlFor="client-name"
+                >Name:</label>
                 <input
-                    id="nombre"
+                    id="client-name"
                     type="text"
                     className="mt-2 block w-full p-3 bg-gray-50"
-                    placeholder="Nombre del Cliente"
-                    name="nombre"
-                    defaultValue={client?.nombre}
+                    placeholder="Client name"
+                    name="client-name"
+                    defaultValue={client?.name}
                     required
                 />
             </div>
 
             <div className="mb-4">
                 <label
-                    className="text-gray-800 font-bold"
+                    className="text-third font-bold"
                     htmlFor="email"
                 >E-mail:</label>
                 <input
                     id="email"
                     type="email"
                     className="mt-2 block w-full p-3 bg-gray-50"
-                    placeholder="Email del Cliente"
+                    placeholder="Client email"
                     name="email"
                     defaultValue={client?.email}
                     required
@@ -84,32 +84,33 @@ export default function Form({client}: {client: ClientDB | undefined}) {
 
             <div className="mb-4">
                 <label
-                    className="text-gray-800 font-bold"
-                    htmlFor="telefono"
-                >Teléfono:</label>
+                    className="text-third font-bold"
+                    htmlFor="phone"
+                >Phone:</label>
                 <input
-                    id="telefono"
+                    id="phone"
                     type="number"
                     className="mt-2 block w-full p-3 bg-gray-50"
-                    placeholder="Teléfono del Cliente"
-                    name="telefono"
-                    defaultValue={client?.telefono}
+                    placeholder="Client phone"
+                    name="phone"
+                    defaultValue={client?.phone}
                     required
                     onInput={validateTel}
+                    autoComplete="false"
                 />
             </div>
 
             <div className="mb-4">
                 <label
-                    className="text-gray-800 font-bold"
-                    htmlFor="notas"
-                >Notas <span className='text-sm font-semibold'>(Max. 200 Carácteres)</span>:</label>
+                    className="text-third font-bold"
+                    htmlFor="notes"
+                >Notes <span className='text-sm font-semibold'>(Max. 200 Characters)</span>:</label>
                 <textarea
-                    id="notas"
+                    id="notes"
                     className="mt-2 block w-full p-3 bg-gray-50 h-40 align-self"
-                    placeholder="Notas del Cliente"
-                    name="notas"
-                    defaultValue={client?.notas}
+                    placeholder="Client notes"
+                    name="notes"
+                    defaultValue={client?.notes}
                     required
                     maxLength={200}
                 />
@@ -117,9 +118,9 @@ export default function Form({client}: {client: ClientDB | undefined}) {
 
             <button
                 type="submit"
-                className='mt-5 w-full bg-blue-800 p-3 font-bold text-white text-lg rounded-lg hover:bg-blue-600'
+                className='mt-5 w-full p-3 font-bold hover:bg-third border border-third text-third hover:text-primary text-lg rounded-lg '
             >
-                {client ? 'Editar Cliente' : 'Registrar Cliente'}
+                {client ? 'Edit Client' : 'Register Client'}
             </button>
         </form>
     )

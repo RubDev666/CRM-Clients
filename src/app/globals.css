@@ -1,3 +1,40 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+    --height-nav-mobile: 68px;
+    --heigh-search-mobile: 56px;
+    --height-search: 72px;
+    --height-search-desk: 92px;
+}
+
+/*---- mobile first---*/
+thead {
+    top: calc((var(--heigh-search-mobile) + var(--height-nav-mobile) - 2px));
+    background-color: #466668;
+}
+
+@media screen and (min-width: 768px) {
+    thead {
+        top: calc(var(--height-search) - 2px);
+    }
+}
+
+@media screen and (min-width: 1280px) {
+    thead {
+        top: calc(var(--height-search-desk) - 2px);
+    }
+}
+
+/*======== remove buttons from input number =====*/
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=number] {
+    -moz-appearance: textfield;
+    appearance: textfield;
+}

@@ -34,7 +34,7 @@ export const useCRMstore = create<CRMstate>((set, get) => ({
 
         const cli = get().clients;
 
-        const busqueda = cli.filter(cliente => cliente.nombre.toLowerCase().includes(text.toLowerCase()));
+        const busqueda = cli.filter(cliente => cliente.name.toLowerCase().includes(text.toLowerCase()));
 
         set({filters: busqueda});
         set({filterActive: true});

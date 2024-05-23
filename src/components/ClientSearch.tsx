@@ -10,7 +10,7 @@ export default function ClientSearch() {
 
     return (
         <form
-            className="bg-blue-900 w-full flex items-center justify-center px-2 py-3 md:py-5 xl:py-6  mt-4 sticky top-16 md:top-0 z-50"
+            className="bg-primary w-full flex items-center justify-center px-2 py-3 md:py-5 xl:py-6 mt-4 sticky top-[68px] md:top-0 z-50"
             onSubmit={(e) => {
                 e.preventDefault();
 
@@ -27,14 +27,14 @@ export default function ClientSearch() {
                 <div className="xl:hidden cursor-pointer">
                     <FontAwesomeIcon
                         icon={faSearch}
-                        style={{ fontSize: 20, color: "#fff" }}
+                        style={{ fontSize: 20, color: "#15F5BA" }}
                     />
                 </div>
 
                 <div className="hidden xl:block cursor-pointer">
                     <FontAwesomeIcon
                         icon={faSearch}
-                        style={{ fontSize: 25, color: "#fff" }}
+                        style={{ fontSize: 25, color: "#15F5BA" }}
                     />
                 </div>
             </label>
@@ -43,7 +43,7 @@ export default function ClientSearch() {
                 type="text"
                 id="filtro"
                 className="w-3/4 xl:w-1/2 py-1 px-3 xl:py-2 xl:text-lg xl:px-4"
-                placeholder="Buscar por nombre de cliente"
+                placeholder="Search by client name"
                 onChange={(e) => filterSearch(e.target.value)}
             />
         </form>

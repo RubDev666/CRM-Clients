@@ -1,8 +1,8 @@
 export interface ClientForm {
-    nombre: string;
+    name: string;
     email: string;
-    telefono: number;
-    notas: string;
+    phone: number;
+    notes: string;
 }
 
 export interface ClientDB extends ClientForm {
